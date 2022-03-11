@@ -55,14 +55,6 @@ define Device/mikrotik_routerboard-lhg-5nd
 endef
 TARGET_DEVICES += mikrotik_routerboard-lhg-5nd
 
-define Device/mikrotik_routerboard-mapl-2nd
-  $(Device/mikrotik_nor)
-  SOC := qca9533
-  DEVICE_MODEL := RouterBOARD mAPL-2nD (mAP lite)
-  IMAGE_SIZE := 16256k
-endef
-TARGET_DEVICES += mikrotik_routerboard-mapl-2nd
-
 define Device/mikrotik_routerboard-sxt-5nd-r2
   $(Device/mikrotik_nand)
   SOC := ar9344
@@ -71,6 +63,15 @@ define Device/mikrotik_routerboard-sxt-5nd-r2
   SUPPORTED_DEVICES += rb-sxt5n
 endef
 TARGET_DEVICES += mikrotik_routerboard-sxt-5nd-r2
+
+define Device/mikrotik_routerboard-sxtr
+  $(Device/mikrotik_nor)
+  SOC := qca9531
+  DEVICE_MODEL := RouterBOARD SXTR (SXT-LTE)
+  DEVICE_PACKAGES += kmod-usb2 kmod-gpio-nxp-74hc164
+  IMAGE_SIZE := 16256k
+endef
+TARGET_DEVICES += mikrotik_routerboard-sxtr
 
 define Device/mikrotik_routerboard-wap-g-5hact2hnd
   $(Device/mikrotik_nor)

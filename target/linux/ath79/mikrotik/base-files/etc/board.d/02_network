@@ -17,12 +17,14 @@ ath79_setup_interfaces()
 	mikrotik,routerboard-912uag-2hpnd|\
 	mikrotik,routerboard-lhg-2nd|\
 	mikrotik,routerboard-lhg-5nd|\
-	mikrotik,routerboard-mapl-2nd|\
 	mikrotik,routerboard-sxt-5nd-r2|\
 	mikrotik,routerboard-wap-g-5hact2hnd|\
 	mikrotik,routerboard-wapr-2nd)
 		ucidef_set_interface_lan "eth0"
 		;;
+        mikrotik,routerboard-sxtr)
+                ucidef_set_interfaces_lan_wan "eth1" "eth0"
+                ;;
 	*)
 		ucidef_set_interfaces_lan_wan "eth0" "eth1"
 		;;
@@ -41,7 +43,6 @@ ath79_setup_macs()
 	mikrotik,routerboard-912uag-2hpnd|\
 	mikrotik,routerboard-lhg-2nd|\
 	mikrotik,routerboard-lhg-5nd|\
-	mikrotik,routerboard-mapl-2nd|\
 	mikrotik,routerboard-sxt-5nd-r2|\
 	mikrotik,routerboard-wap-g-5hact2hnd|\
 	mikrotik,routerboard-wapr-2nd)
