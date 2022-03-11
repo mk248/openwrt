@@ -6,7 +6,8 @@ board_config_update
 board=$(board_name)
 
 case "$board" in
-mikrotik,routerboard-lhg-2nd)
+mikrotik,routerboard-lhg-2nd|\
+mikrotik,routerboard-mapl-2nd)
 	ucidef_set_led_netdev "lan" "lan" "green:lan" "eth0"
 	;;
 mikrotik,routerboard-lhg-5nd)
@@ -35,7 +36,7 @@ mikrotik,routerboard-sxt-5nd-r2)
 mikrotik,routerboard-sxtr)
         ucidef_set_led_netdev "eth1" "eth1" "green:eth1" "eth1"
         ucidef_set_led_switch "eth2" "eth2" "green:eth2" "switch0" "4" "6" "link tx rx"
-        ;;
+        ;;        
 esac
 
 board_config_flush
