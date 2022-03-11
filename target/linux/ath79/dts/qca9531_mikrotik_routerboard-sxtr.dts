@@ -27,20 +27,20 @@
 			gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
 		};
 				
-				eth1green {
-						label = "green:eth1";
-						gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
-				};
+		eth1green {
+			label = "green:eth1";
+			gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
+		};
 				
-				eth2green {
-						label = "green:eth2";
-						gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
-				};
+		eth2green {
+			label = "green:eth2";
+			gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
+		};
 						
-				eth2yellow {
-						label = "yellow:eth2";
-						gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
-				};
+		eth2yellow {
+			label = "yellow:eth2";
+			gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
+		};
 				
 		signal0 {
 			label = "green:rssilow";
@@ -78,39 +78,38 @@
 			gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
 		};
 				
-				poe_out {
+		poe_out {
 			gpio-export,name = "poe_out";
 			gpio-export,output = <0>;
 			gpios = <&gpio 14 GPIO_ACTIVE_HIGH>;
 		};
 				
-				poe_status {
-						gpio-export,name = "poe_status";
-						gpio-export,input;
-						gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
-				};
+		poe_status {
+			gpio-export,name = "poe_status";
+			gpio-export,input;
+			gpios = <&gpio 12 GPIO_ACTIVE_HIGH>;
+		};
 				
-				sim_select {
-						gpio-export,name = "sim_select";
-						gpio-export,output = <0>;
-						gpios = <&gpio_ext 7 GPIO_ACTIVE_HIGH>;
-				};
+		sim_select {
+			gpio-export,name = "sim_select";
+			gpio-export,output = <0>;
+			gpios = <&gpio_ext 7 GPIO_ACTIVE_HIGH>;
+		};
 
-				modem_reset {
-						gpio-export,name = "modem_reset";
-						gpio-export,output = <0>;
-						gpios = <&gpio_ext 0 GPIO_ACTIVE_HIGH>;
-				};
+		modem_reset {
+			gpio-export,name = "modem_reset";
+			gpio-export,output = <0>;
+			gpios = <&gpio_ext 0 GPIO_ACTIVE_HIGH>;
+		};
 
-				modem_rfkill {
-						gpio-export,name = "modem_rfkill";
-						gpio-export,output = <0>;
-						gpios = <&gpio_ext 1 GPIO_ACTIVE_HIGH>;
-				};
-
+		modem_rfkill {
+			gpio-export,name = "modem_rfkill";
+			gpio-export,output = <0>;
+			gpios = <&gpio_ext 1 GPIO_ACTIVE_HIGH>;
+		};
 	};
 		
-		keys {
+	keys {
 		compatible = "gpio-keys";
 
 		mode {
@@ -125,8 +124,8 @@
 
 &spi {
 	status = "okay";
-		num-cs = <2>;
-		cs-gpios = <0>, <0>;
+	num-cs = <2>;
+	cs-gpios = <0>, <0>;
 
 	pinctrl-names = "default";
 	pinctrl-0 = <&pmx_spi_ext>;
@@ -142,20 +141,20 @@
 };
 
 &pinmux {
-                pmx_spi_ext: spi_ext {
-				pinctrl-single,bits = <0x08 0x0a000000 0xff000000>;  // Route SPI_CS1 to GPIO 11 for 74HC595.      
-                };
+	pmx_spi_ext: spi_ext {
+		pinctrl-single,bits = <0x08 0x0a000000 0xff000000>;  // Route SPI_CS1 to GPIO 11 for 74HC595.      
+	};
 		
-		pmx_gpios: pmx_gpios {
-				pinctrl-single,bits =   <0x00 0x00000000 0x00ff00ff>,  // port green leds normal GPIO
-										<0x08 0x00001600 0x0000ff00>,  // 10 is serial out -- will make eth1 yellow light blink
-										<0x10 0x00000000 0x0000ff00>;  // i7 normal mode for LED
-		};
+	pmx_gpios: pmx_gpios {
+		pinctrl-single,bits = <0x00 0x00000000 0x00ff00ff>,  // port green leds normal GPIO
+				      <0x08 0x00001600 0x0000ff00>,  // 10 is serial out -- shared eth1 yellow LED
+				      <0x10 0x00000000 0x0000ff00>;  // i7 normal mode for LED
+	};
 };
 
 &gpio {
-		pinctrl-names = "default";
-		pinctrl-0 = <&pmx_gpios>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pmx_gpios>;
 };
 
 &usb0 {
@@ -164,7 +163,7 @@
 	status = "okay";
 
 	hub_port: port@1 {
-		reg = <1>;
+		eg = <1>;
 		#trigger-source-cells = <0>;
 	};
 };
@@ -189,4 +188,3 @@
 	status = "okay";
 	mtd-mac-address = <&hard_config 0x10>;
 };
-
